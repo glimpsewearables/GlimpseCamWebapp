@@ -14,8 +14,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url, include # make sure to add include 
+from tastypie.resources import ModelResource
 
 urlpatterns = [
     url(r'^', include('apps.glimpseAPIApp.urls')),
-    url(r'^', include('apps.userInteractionApp.urls'))
+    url(r'^', include('apps.userInteractionApp.urls')),
+    # url(r'^media/getMedia', include(media_resource.urls)),
+    # url(r'^media/getUser$', include(user_resource.urls)),
+    # url(r'^media/getEvent$', include(event_resource.urls)),
+    # url(r'^media/getDevice$', include(device_resource.urls))
 ]

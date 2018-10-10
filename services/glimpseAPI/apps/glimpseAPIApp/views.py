@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse
 import bcrypt, sys, os, base64, datetime, hashlib, hmac 
-import boto3, csv
+import boto3, csv, json
 from django.db import models
 from .models import User, Device, Event, Media
 client = boto3.client('s3') #low-level functional API
@@ -197,14 +197,16 @@ def getAllImages(request): # grabs ALL images that are being stored in the raw b
     context = {}
     all_images = Media.objects.filter(media_type = "image")
     context["all_images"] = all_images
-    return HttpResponse(context)
+    newContext = json.dumps(context)
+    return HttpResponse(newContext)
 
 def getAllVideos(request): # grabs ALL videos that are being stored in the raw bucket
     response = "Getting all videos"
     context = {}
     all_videos = Media.objects.filter(media_type = "video")
     context["all_videos"] = all_videos
-    return HttpResponse(context)
+    newContext = json.dumps(context)
+    return HttpResponse(newContext)
 
 def getAllUserImages(request, user_id): # grabs ALL images connected to the specific user that are being stored in the raw bucket
     context = {}
@@ -214,9 +216,11 @@ def getAllUserImages(request, user_id): # grabs ALL images connected to the spec
         edited_images = Media.objects.filter(UserId = User.objects.get(id=user_id), media_type = "image", raw_or_edited = "edited")
         context["raw_images"] = raw_images
         context["edited_images"] = edited_images
+        
     else:
         context["error"] = "You entered a user that does not exist"
-    return HttpResponse(context)
+    newContext = json.dumps(context)
+    return HttpResponse(newContext)
 
 def getAllUserVideos(request, user_id): # grabs ALL videos connected to the specific user that are being stored in the raw bucket
     context = {}
@@ -228,6 +232,7 @@ def getAllUserVideos(request, user_id): # grabs ALL videos connected to the spec
         context["images_raw"] = images_raw
     else:
         context["error"] = "You entered a user that does not exist"
+    context.json()
     return HttpResponse(context)
 
 def getAllEvents(request): # grabs ALL events from mysql database
@@ -239,6 +244,7 @@ def getAllEvents(request): # grabs ALL events from mysql database
     context["all_events"] = all_events
     context["all_images"] = all_images
     context["all_videos"] = all_videos
+    context.json()
     return HttpResponse(context)
 
 def getSpecificEvent(request, event_id): # grabs a specific event from the mySQL database
@@ -252,6 +258,7 @@ def getSpecificEvent(request, event_id): # grabs a specific event from the mySQL
         context["this_event_content"] = this_event_content
     else:
         context["error"] = "You entered a event that does not exist"
+    context.json()
     return HttpResponse(context)
 
 def getAllImagesUserEvent(request, user_id, event_id): # grabs all images for a specific user at a specific event
@@ -262,6 +269,7 @@ def getAllImagesUserEvent(request, user_id, event_id): # grabs all images for a 
         context["user_event_content"] = user_event_content
     else:
         context["error"] = "You entered a user or event that does not exist"
+    context.json()
     return HttpResponse(context)
 
 def getAllVideosUserEvent(request, user_id, event_id): # grabs all videos for a specific user at a specific event
@@ -272,4 +280,5 @@ def getAllVideosUserEvent(request, user_id, event_id): # grabs all videos for a 
         context["user_event_content"] = user_event_content
     else:
         context["error"] = "You entered a user or event that does not exist"
+    context.json()
     return HttpResponse(context)
