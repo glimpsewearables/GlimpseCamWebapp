@@ -1,5 +1,9 @@
 GW Services Code
-
+### Documents to read about how to make a api with the django python framework that we are using and have implemented so far
+https://simpleisbetterthancomplex.com/tutorial/2018/02/03/how-to-use-restful-apis-with-django.html
+https://codeburst.io/create-a-django-api-in-under-20-minutes-2a082a60f6f3
+#### For converting data into a json object, currently having issues jsonifying the data because it is in an object specific to each case(User, Device, Media, Event) and cannot be converted into a json file as is
+https://www.w3schools.com/python/python_json.asp
 The current urls will return the content as described in a json file
 ## **""** => 
 returns nothing, a loading page telling you to enter a proper url as an endpoint
