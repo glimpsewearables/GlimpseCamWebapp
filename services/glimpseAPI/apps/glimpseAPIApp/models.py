@@ -38,7 +38,7 @@ class Media(models.Model):
     DeviceId = models.ForeignKey(Device, related_name="content", null=True)
     event = models.ForeignKey(Event, related_name="media_at_event", null=True)
     media_type = models.CharField(max_length=10)# either image, or video
-    url_link = models.CharField(max_length=245)
+    link = models.CharField(max_length=245)
     raw_or_edited = models.CharField(max_length=45)
     downloaded = models.IntegerField(default=False)
     ranking = models.IntegerField(default=1)

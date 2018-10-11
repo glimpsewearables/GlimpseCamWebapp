@@ -60,3 +60,37 @@ def updateUser():
 #             user_with_id = User.objects.get(id=request.session['user_id'])
 #             return redirect('/userPage')
 #     return redirect('/')
+# def login(request):
+#     if request.method == "POST":
+#         errors = User.objects.login_validator(request.POST)
+#         if len(errors):
+#             for key, value in errors.items():
+#                 messages.error(request, value)
+#             return redirect('/registerLoginPage', errors)
+#         checkEmail = request.POST['emailsLogin']
+#         passEmail = checkEmail.lower()
+#         if User.objects.filter(email_address=passEmail):
+#             user = User.objects.get(email_address=passEmail)
+#             if user.device_key_name == request.POST['deviceNumber']:
+#                 request.session['user_id'] = user.id
+#                 return redirect('/userPage')
+#     return redirect('/')
+# All of functions for creating events and managing event information
+
+# functions divider
+# functions divider
+# functions divider
+
+# def createEvent(request):
+#     if isLoggedIn() == "false":
+#         return redirect("")
+#     if request.method == "POST":
+#         errors = Event.objects.basic_validator(request.POST)
+#         print(errors)
+#         if len(errors):
+#             for key, value in errors.items():
+#                 messages.error(request, value)
+#             return redirect('/godMode', errors)
+#         else:
+#             Event.objects.create(name=request.POST['eventName'], venue_name=request.POST['venueName'], address=request.POST['address'], start_date=request.POST['startDate'], end_date=request.POST['endDate'])
+#     return redirect("/godMode")
