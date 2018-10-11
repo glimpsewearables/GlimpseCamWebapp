@@ -2,6 +2,7 @@ from tastypie.resources import ModelResource
 from .models import User, Event, Device, Media
 from tastypie.authorization import Authorization
 
+# These files are used for the querying of data on the server side of the applications
 class UserResource(ModelResource):
     class Meta:
         queryset = User.objects.all()

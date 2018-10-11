@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponse
 import bcrypt, sys, os, base64, datetime, hashlib, hmac 
 import boto3, csv, json
+import requests
 from django.db import models
 from .models import User, Device, Event, Media
 client = boto3.client('s3') #low-level functional API
@@ -72,9 +73,9 @@ def updateDatabase(request):
             Media.objects.create(
                 media_type = data_type,
                 link = data.key,
-                DeviceId = Device.objects.last(),
-                UserId = User.objects.last(),
-                event = Event.objects.last(),
+                DeviceId = Device.objects.get(id=1),
+                UserId = User.objects.get(id=1),
+                event = Event.objects.get(id=1),
                 raw_or_edited = "raw"
             )
             print("adding new edited media with " + data.key + " as a the link")
@@ -86,8 +87,20 @@ def updateDatabase(request):
         else:
             # If else statement that helps decide whether or not this media type is a image or video
             # Reuse this function for adding image to database every time a new image is uploaded to the s3 database
+            check_image_video = data.key.lower()
+            data_type = ""
+            if check_image_video.endswith(".jpg") or check_image_video.endswith(".jpeg") or check_image_video.endswith(".png"):
+                print("it is an image")
+                data_type = "image"
+            elif check_image_video.endswith(".mp4"):
+                print("it is a video")
+                data_type = "video"
+            elif check_image_video.endswith("/"):
+                data_type = "this is a folder"
+            else:
+                data_type = "not a jpg/jpeg or mp4"
             Media.objects.create(
-                media_type = "image",
+                media_type = data_type,
                 link = data.key,
                 DeviceId = Device.objects.last(),
                 UserId = User.objects.last(),
@@ -213,6 +226,7 @@ def getAllImages(request): # grabs ALL images that are being stored in the raw b
     json_images = jsonifyMediaData(all_images)
     newContext = json.dumps(json_images)
     return HttpResponse(newContext)
+    # return json(json_images)
 
 def getAllVideos(request): # grabs ALL videos that are being stored in the raw bucket
     context = {}

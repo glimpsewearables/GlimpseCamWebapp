@@ -1,4 +1,8 @@
 GW Services Code
+
+## Reading to do
+https://stackoverflow.com/questions/8634473/sending-json-request-with-python
+
 The current urls will return the content as described in a json file
 #API functionality with put/post/get/delete/patch requests
 
@@ -27,7 +31,7 @@ The current urls will return the content as described in a json file
 }
 ### POST/PUT "api/event/" => 
 {
-    "name": "{{Desired name of event}}"
+    "name": "{{Desired name of event}}",
     "address": "{{Desired address of event}}",
     "end_date": "{{Desired end_date of event}}",
     "start_date": "{{Desired start_date of event}}",
