@@ -1,10 +1,54 @@
 GW Services Code
-### Documents to read about how to make a api with the django python framework that we are using and have implemented so far
-https://simpleisbetterthancomplex.com/tutorial/2018/02/03/how-to-use-restful-apis-with-django.html
-https://codeburst.io/create-a-django-api-in-under-20-minutes-2a082a60f6f3
-#### For converting data into a json object, currently having issues jsonifying the data because it is in an object specific to each case(User, Device, Media, Event) and cannot be converted into a json file as is
-https://www.w3schools.com/python/python_json.asp
 The current urls will return the content as described in a json file
+#API functionality with put/post/get/delete/patch requests
+
+## Using "get" as the HTTP Response will allow you to simply return the json files as seen below
+### GET "api/user/" => returns all of the users in the database
+### GET "api/user/{{user_id_of_desired_user}}/" => returns the user with that device id from the database
+### GET "api/media/" => returns all of the media in the database
+### GET "api/media/{{media_id_of_desired_media}}/" => returns the media with that media id from the database
+### GET "api/device/" => returns all of the devices in the database
+### GET "api/device/{{device_id_of_desired_device}}/" => returns the device with that device id from the database
+### GET "api/event/" => returns all of the events in the database
+### GET "api/event/{{event_id_of_desired_event}}/" => returns the event with that event id from the database
+
+## Using "post" as the HTTP Response will allow you to create a new piece of data in the database as long as you follow the proper json syntax for the data
+####
+##### Make sure you include the "/" at the end of each post/patch/put url, otherwise the django framework will see this as routing and won't post any information
+###### Use POST request to create a new object being stored in the database
+###### Use PUT request to update an already existing object in the database
+### POST/PUT "api/user/" => 
+{
+    "email": "{{Desired email of user}}",
+    "first_name": "{{Desired first name of user}}",
+    "last_name": "{{Desired last name of user}}",
+    "password": "{{Desired password of user}}",
+    "phone": "{{Desired phone number of user}}"
+}
+### POST/PUT "api/event/" => 
+{
+    "name": "{{Desired name of event}}"
+    "address": "{{Desired address of event}}",
+    "end_date": "{{Desired end_date of event}}",
+    "start_date": "{{Desired start_date of event}}",
+    "lat": "{{Desired latitude of event}}",
+    "long": "{{Desired longitude of event}}"
+}
+### POST/PUT "api/media/" => 
+{
+    "link": "{{name of the media that is stored in the s3 data}",
+    "media_type": "{{image or video}}",
+    "ranking": "{{Desired ranking of the media}}",
+    "raw_or_edited" : {{Whether or not the image has been edited or not}}",
+    "downloaded" : "{{0 means not downloaded, 1 means downloaded}}",
+}
+### POST/PUT "api/device/" => 
+{
+    "device_number" : "{{device number of device}}",
+    "serial_number" : "{{serial number of the device}}"
+}
+
+#All of the following routes return a specific type of data from the database
 ## **""** => 
 returns nothing, a loading page telling you to enter a proper url as an endpoint
 ## **"media"** => 

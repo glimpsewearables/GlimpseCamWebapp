@@ -44,3 +44,6 @@ class Media(models.Model):
     ranking = models.IntegerField(default=1)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
+
+def __str__(self):
+        return '%s %s' % (self.title, self.body)
