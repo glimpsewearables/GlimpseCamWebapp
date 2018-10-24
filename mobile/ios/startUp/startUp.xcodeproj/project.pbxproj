@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		460E2B4A21599342007C9C2D /* RegisterNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460E2B4921599342007C9C2D /* RegisterNewViewController.swift */; };
 		460E2B4C21599C37007C9C2D /* homePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460E2B4B21599C37007C9C2D /* homePageViewController.swift */; };
+		462C35D92176DEAF00068A1C /* EventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462C35D82176DEAF00068A1C /* EventsTableViewController.swift */; };
 		46DD43FE2137C03A0022D024 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DD43FD2137C03A0022D024 /* AppDelegate.swift */; };
 		46DD44002137C03A0022D024 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DD43FF2137C03A0022D024 /* LoginViewController.swift */; };
 		46DD44032137C03A0022D024 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46DD44012137C03A0022D024 /* Main.storyboard */; };
@@ -30,6 +31,7 @@
 /* Begin PBXFileReference section */
 		460E2B4921599342007C9C2D /* RegisterNewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterNewViewController.swift; sourceTree = "<group>"; };
 		460E2B4B21599C37007C9C2D /* homePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homePageViewController.swift; sourceTree = "<group>"; };
+		462C35D82176DEAF00068A1C /* EventsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTableViewController.swift; sourceTree = "<group>"; };
 		46DD43FA2137C03A0022D024 /* startUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = startUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46DD43FD2137C03A0022D024 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46DD43FF2137C03A0022D024 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				46DD44092137C03C0022D024 /* Info.plist */,
 				460E2B4921599342007C9C2D /* RegisterNewViewController.swift */,
 				460E2B4B21599C37007C9C2D /* homePageViewController.swift */,
+				462C35D82176DEAF00068A1C /* EventsTableViewController.swift */,
 			);
 			path = startUp;
 			sourceTree = "<group>";
@@ -208,6 +211,7 @@
 				460E2B4C21599C37007C9C2D /* homePageViewController.swift in Sources */,
 				46DD44002137C03A0022D024 /* LoginViewController.swift in Sources */,
 				460E2B4A21599342007C9C2D /* RegisterNewViewController.swift in Sources */,
+				462C35D92176DEAF00068A1C /* EventsTableViewController.swift in Sources */,
 				46DD43FE2137C03A0022D024 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
