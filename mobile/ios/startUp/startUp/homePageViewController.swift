@@ -17,8 +17,11 @@ struct EventDescriptionPractice {
     
 }
 
-class homePageViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+
+class homePageViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+ 
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,17 +39,30 @@ class homePageViewController: UIViewController, UITableViewDelegate, UITableView
     
     // by default the tables have 1 section. This method isn't used right now
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return events.count
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    /*
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Section \(section)"
     }
-    
+ 
+    // Set the spacing between sections
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            
+            //extra spacing between tableview and top of page.
+            return 60
+        } else {
+            //spacing between the rest of them.
+            return 30
+        }
+    }
+     */
+    /*
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath)
         
@@ -59,6 +75,30 @@ class homePageViewController: UIViewController, UITableViewDelegate, UITableView
         
         return cell
     }
+ */
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath) as! EventTableViewCell
+        
+        // cell.textLabel?.text = events[indexPath.row].name
+        let event = events[indexPath.section]
+        //let event = events[indexPath.row]
+        cell.eventNameLabel?.text = event.name
+        //height of rounded image.
+        self.tableView.rowHeight = 250;
+        self.tableView.separatorColor = UIColor.white;
+        cell.eventLocationLabel?.text = event.location
+        cell.eventImageView?.image = UIImage(named: event.image)
+        //centers the images in the middle of the rectangle and scales to fill
+        cell.eventImageView?.contentMode = .scaleAspectFill
+        //to make the images rounded.
+        cell.eventImageView?.layer.cornerRadius = 30.0
+        cell.layer.backgroundColor = UIColor.white.cgColor
+        cell.contentView.backgroundColor = UIColor.white
+        
+        return cell
+    }
+    
     
     /*
     // MARK: - Navigation

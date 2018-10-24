@@ -27,7 +27,7 @@ class EventsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //tabl
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -57,29 +57,36 @@ class EventsTableViewController: UITableViewController {
     }
     */
     
-    // Set the spacing between sections
+   /* // Set the spacing between sections
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
+            
+            //extra spacing between tableview and top of page.
             return 60
-        } else {
-            return 30
         }
+        return 0
     }
+ */
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath) as! EventTableViewCell
-
+    
        // cell.textLabel?.text = events[indexPath.row].name
         let event = events[indexPath.section]
         //let event = events[indexPath.row]
         cell.eventNameLabel?.text = event.name
-        self.tableView.rowHeight = 250;
+        //height of rounded image.
+        self.tableView.rowHeight = 270;
+        self.tableView.separatorColor = UIColor.white;
         cell.eventLocationLabel?.text = event.location
         cell.eventImageView?.image = UIImage(named: event.image)
-        cell.eventImageView?.layer.cornerRadius = 30.0
+        //centers the images in the middle of the rectangle and scales to fill
+        cell.eventImageView?.contentMode = .scaleAspectFill
+        //to make the images rounded.
+       //cell.eventImageView?.layer.cornerRadius = 30.0
         cell.layer.backgroundColor = UIColor.white.cgColor
-         cell.contentView.backgroundColor = UIColor.white
+        cell.contentView.backgroundColor = UIColor.white
         
         return cell
     }
