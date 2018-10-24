@@ -149,9 +149,10 @@ def updateSingleMedia(): # figure out the put request to update an existing obje
 # Converting the object based data into json data that can be parsed and returned by the api
 def jsonifyMediaData(data):
     context = {}
+    all_media = []
     for data_point in data:
-        context[data_point.id] = {
-                "link" : data_point.link,
+        adding_context = {
+                "link" : "https://s3.amazonaws.com/pi-4/" + data_point.link,
                 "user_id" : data_point.UserId.id,
                 "device_id" : data_point.DeviceId.id,
                 "event_id" : data_point.event.id,
@@ -162,12 +163,15 @@ def jsonifyMediaData(data):
                 "created_at" : str(data_point.created_at),
                 "updated_at" : str(data_point.updated_at)
             }
+        all_media.append(adding_context)
+    context.update({"media" : all_media})
     return context
 
 def jsonifyEventData(data):
     context = {}
+    all_events = []
     for data_point in data:
-        context[data_point.id] = {
+        adding_context = {
                 "name" : data_point.name,
                 "address" : data_point.address,
                 "start_date" : str(data_point.start_date),
@@ -177,24 +181,30 @@ def jsonifyEventData(data):
                 "created_at" : str(data_point.created_at),
                 "updated_at" : str(data_point.updated_at)
             }
+        all_events.append(adding_context)
+    context.update({"events" : all_events})
     return context
 
 def jsonifyDeviceData(data):
     context = {}
+    all_events = []
     for data_point in data:
-        context[data_point.id] = {
+        adding_context = {
             "serial_number" : data_point.serial_number,
             "device_number" : data_point.device_number,
             "user_id" : data_point.UserId.id,
             "created_at" : str(data_point.created_at),
             "updated_at" : str(data_point.updated_at)
         }
+        all_events.append(adding_context)
+    context.update({"devices" : all_events})
     return context
 
 def jsonifyUserData(data):
     context = {}
+    all_users = []
     for data_point in data:
-        context[data_point.id] = {
+        adding_context = {
             "first_name" : data_point.first_name,
             "last_name" : data_point.last_name,
             "email" : data_point.email,
@@ -203,6 +213,7 @@ def jsonifyUserData(data):
             "created_at" : str(data_point.created_at),
             "updated_at" : str(data_point.updated_at)
         }
+        all_users.append({"users" : all_users})
     return context
 
 
